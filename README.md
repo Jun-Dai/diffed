@@ -1,4 +1,6 @@
-# Diffl
+# Diffl [![Build Status](https://secure.travis-ci.org/Jun-Dai/diffl.png)](http://travis-ci.org/Jun-Dai/diffl)
+
+
 
 TODO: Write a gem description
 
