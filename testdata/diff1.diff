@@ -1,0 +1,13 @@
+@@ -2,9 +2,10 @@
+ # Represent a single piece of a diff.
+ # 
+ class PrettyDiff::Chunk #:nodoc:
+-  attr_reader :meta_info, :input, :lines
++  attr_reader :diff, :meta_info, :input, :lines
+   
+-  def initialize(meta_info, input)
++  def initialize(diff, meta_info, input)
++    @diff = diff
+     @meta_info = meta_info
+     @input = input
+   end
