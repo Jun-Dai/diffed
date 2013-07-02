@@ -7,17 +7,19 @@ module Diffed
     end
     
     def as_html_table(inline_styles = true)
-      left_line_num = @header.line_nums[:left][:from]
-      right_line_num = @header.line_nums[:right][:from]
-
       html = make_table_tag(inline_styles)
-      html << make_section_header_row(inline_styles)
       
-      @diff_lines.each_with_index do |line, i|
-        html << make_tr_line(line, left_line_num, right_line_num, inline_styles)
+      @sections.each do |section|
+        left_line_num = section.header.line_nums[:left][:from]
+        right_line_num = section.header.line_nums[:right][:from]        
         
-        left_line_num += 1 unless line.type == :right
-        right_line_num += 1 unless line.type == :left
+        html << make_section_header_row(section.header, inline_styles)        
+        section.lines.each_with_index do |line, i|
+          html << make_tr_line(line, left_line_num, right_line_num, inline_styles)
+
+          left_line_num += 1 unless line.type == :right
+          right_line_num += 1 unless line.type == :left
+        end
       end
 
       html << "</table>"
@@ -54,11 +56,11 @@ module Diffed
       end        
     end
     
-    def make_section_header_row(inline_styles)
+    def make_section_header_row(header, inline_styles)
       if inline_styles
-        format_styled_tr_line('#F0F0FF', '#888', "...", "...", @header.text)
+        format_styled_tr_line('#F0F0FF', '#888', "...", "...", header.text)
       else
-        format_classed_tr_line('section', "...", "...", @header.text)
+        format_classed_tr_line('section', "...", "...", header.text)
       end
     end
     
@@ -76,22 +78,43 @@ module Diffed
       row_style = bg_color.nil? ? "" : %Q{ style="background-color: #{bg_color}"}
       text_color = text_color || '#000'
       
-      %Q{<tr#{row_style}><td style="border-left: 1px solid \#CCC">#{left_num}</td><td style="border-left: 1px solid \#CCC">#{right_num}</td><td style="border-left: 1px solid \#CCC; border-right: 1px solid \#CCC; color: #{text_color}">#{text}</td></tr>\n}
+      %Q{<tr#{row_style}><td style="border-left: 1px solid \#CCC">#{left_num}</td><td style="border-left: 1px solid \#CCC">#{right_num}</td><td style="border-left: 1px solid \#CCC; border-right: 1px solid \#CCC; color: #{text_color}"><pre>#{text}</pre></td></tr>\n}
     end
     
     def format_classed_tr_line(css_class, left_num, right_num, text)
-      %Q{<tr class="#{css_class}"><td>#{left_num}</td><td>#{right_num}</td><td>#{text}</td></tr>\n}
+      %Q{<tr class="#{css_class}"><td>#{left_num}</td><td>#{right_num}</td><td><pre>#{text}</pre></td></tr>\n}
     end
     
     def parse(lines)
-      # first line is special
-      @header = DiffHeaderLine.new(lines[0])      
-      @diff_lines = lines[1..lines.length].collect {|l| DiffLine.new(l)}
+      @sections = []
+      curr_header, curr_lines = nil, []      
+      
+      lines.each do |line|
+        if DiffHeaderLine.is_header?(line)
+          unless curr_header.nil?
+            @sections << DiffSection.new(curr_header, curr_lines)
+          end
+          
+          curr_header, curr_lines = DiffHeaderLine.new(line), []
+        elsif line =~ /\\ No newline at end of file/
+          curr_lines.last.no_new_line = true
+        else
+          curr_lines << DiffLine.new(line)
+        end
+      end
     end
   end
   
+  class DiffSection
+    attr_reader :header, :lines
+    
+    def initialize(header_line, lines)
+      @header, @lines = header_line, lines
+    end    
+  end    
+  
   class DiffLine
-    attr_reader :type, :text
+    attr_reader :type, :text, :no_new_line
     
     def initialize(line)
       if line.start_with? "-"
@@ -105,19 +128,29 @@ module Diffed
       end
       
       @text = line
-    end
+      @no_new_line = false
+    end    
+    
+    def no_new_line= bool
+      # mutability like this kind of sucks, but this one's a pain to avoid.
+      @no_new_line = true
+    end    
   end
   
   class DiffHeaderLine
     attr_reader :line_nums, :text
     
     def initialize(line)
-      if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@$/
+      if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/
         @text = line
         @line_nums = {left: {from: $1.to_i, to: $2.to_i}, right: {from: $1.to_i, to: $2.to_i}}
       else
         raise "Unparseable header line: #{line}"
       end
+    end
+    
+    def self.is_header?(line)
+      line.start_with? "@@ "
     end
   end
 end

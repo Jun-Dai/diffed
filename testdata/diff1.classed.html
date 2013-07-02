@@ -1,15 +1,52 @@
 <table class="coloured-diff">
-<tr class="section"><td>...</td><td>...</td><td>@@ -2,9 +2,10 @@</td></tr>
-<tr class="both"><td>2</td><td>2</td><td> # Represent a single piece of a diff.</td></tr>
-<tr class="both"><td>3</td><td>3</td><td> # </td></tr>
-<tr class="both"><td>4</td><td>4</td><td> class PrettyDiff::Chunk #:nodoc:</td></tr>
-<tr class="left"><td>5</td><td>.</td><td>-  attr_reader :meta_info, :input, :lines</td></tr>
-<tr class="right"><td>.</td><td>5</td><td>+  attr_reader :diff, :meta_info, :input, :lines</td></tr>
-<tr class="both"><td>6</td><td>6</td><td>   </td></tr>
-<tr class="left"><td>7</td><td>.</td><td>-  def initialize(meta_info, input)</td></tr>
-<tr class="right"><td>.</td><td>7</td><td>+  def initialize(diff, meta_info, input)</td></tr>
-<tr class="right"><td>.</td><td>8</td><td>+    @diff = diff</td></tr>
-<tr class="both"><td>8</td><td>9</td><td>     @meta_info = meta_info</td></tr>
-<tr class="both"><td>9</td><td>10</td><td>     @input = input</td></tr>
-<tr class="both"><td>10</td><td>11</td><td>   end</td></tr>
+<tr class="section"><td>...</td><td>...</td><td><pre>@@ -1,22 +1,22 @@</pre></td></tr>
+<tr class="both"><td>1</td><td>1</td><td><pre> #</pre></td></tr>
+<tr class="both"><td>2</td><td>2</td><td><pre> # Represent a single piece of a diff.</pre></td></tr>
+<tr class="left"><td>3</td><td>.</td><td><pre>-# </pre></td></tr>
+<tr class="right"><td>.</td><td>3</td><td><pre>+#</pre></td></tr>
+<tr class="both"><td>4</td><td>4</td><td><pre> class PrettyDiff::Chunk #:nodoc:</pre></td></tr>
+<tr class="both"><td>5</td><td>5</td><td><pre>   attr_reader :diff, :meta_info, :input, :lines</pre></td></tr>
+<tr class="left"><td>6</td><td>.</td><td><pre>-  </pre></td></tr>
+<tr class="right"><td>.</td><td>6</td><td><pre>+</pre></td></tr>
+<tr class="both"><td>7</td><td>7</td><td><pre>   def initialize(diff, meta_info, input)</pre></td></tr>
+<tr class="both"><td>8</td><td>8</td><td><pre>     @diff = diff</pre></td></tr>
+<tr class="both"><td>9</td><td>9</td><td><pre>     @meta_info = meta_info</pre></td></tr>
+<tr class="both"><td>10</td><td>10</td><td><pre>     @input = input</pre></td></tr>
+<tr class="both"><td>11</td><td>11</td><td><pre>   end</pre></td></tr>
+<tr class="left"><td>12</td><td>.</td><td><pre>-  </pre></td></tr>
+<tr class="right"><td>.</td><td>12</td><td><pre>+</pre></td></tr>
+<tr class="both"><td>13</td><td>13</td><td><pre>   # Generate HTML presentation for a Chunk. Return a string.</pre></td></tr>
+<tr class="both"><td>14</td><td>14</td><td><pre>   def to_html</pre></td></tr>
+<tr class="both"><td>15</td><td>15</td><td><pre>     # We have to find lines before we can call line numbers methods.</pre></td></tr>
+<tr class="both"><td>16</td><td>16</td><td><pre>     find_lines!</pre></td></tr>
+<tr class="both"><td>17</td><td>17</td><td><pre>     generator.generate</pre></td></tr>
+<tr class="both"><td>18</td><td>18</td><td><pre>   end</pre></td></tr>
+<tr class="left"><td>19</td><td>.</td><td><pre>-  </pre></td></tr>
+<tr class="right"><td>.</td><td>19</td><td><pre>+</pre></td></tr>
+<tr class="both"><td>20</td><td>20</td><td><pre>   # Return LineNumbers object that represents two columns of numbers</pre></td></tr>
+<tr class="both"><td>21</td><td>21</td><td><pre>   # that will be displayed on the left of the HTML presentation.</pre></td></tr>
+<tr class="both"><td>22</td><td>22</td><td><pre>   #</pre></td></tr>
+<tr class="section"><td>...</td><td>...</td><td><pre>@@ -25,7 +25,7 @@ class PrettyDiff::Chunk #:nodoc:</pre></td></tr>
+<tr class="both"><td>25</td><td>25</td><td><pre>   def line_numbers</pre></td></tr>
+<tr class="both"><td>26</td><td>26</td><td><pre>     @_line_numbers ||= PrettyDiff::LineNumbers.new(diff, meta_info)</pre></td></tr>
+<tr class="both"><td>27</td><td>27</td><td><pre>   end</pre></td></tr>
+<tr class="left"><td>28</td><td>.</td><td><pre>-  </pre></td></tr>
+<tr class="right"><td>.</td><td>28</td><td><pre>+</pre></td></tr>
+<tr class="both"><td>29</td><td>29</td><td><pre> private</pre></td></tr>
+<tr class="both"><td>30</td><td>30</td><td><pre> </pre></td></tr>
+<tr class="both"><td>31</td><td>31</td><td><pre>   def generator</pre></td></tr>
+<tr class="section"><td>...</td><td>...</td><td><pre>@@ -35,9 +35,10 @@ private</pre></td></tr>
+<tr class="both"><td>35</td><td>35</td><td><pre>   # Parse the input searching for lines. Initialize Line object for every line.</pre></td></tr>
+<tr class="both"><td>36</td><td>36</td><td><pre>   # Return an array of Line objects.</pre></td></tr>
+<tr class="both"><td>37</td><td>37</td><td><pre>   def find_lines!</pre></td></tr>
+<tr class="left"><td>38</td><td>.</td><td><pre>-    returning(@lines = []) do</pre></td></tr>
+<tr class="left"><td>39</td><td>.</td><td><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td></tr>
+<tr class="left"><td>40</td><td>.</td><td><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number => idx)</pre></td></tr>
+<tr class="right"><td>.</td><td>38</td><td><pre>+    @lines = []</pre></td></tr>
+<tr class="right"><td>.</td><td>39</td><td><pre>+    @lines.tap do</pre></td></tr>
+<tr class="right"><td>.</td><td>40</td><td><pre>+      input.split(/\r?\n/).each do |line_str|</pre></td></tr>
+<tr class="right"><td>.</td><td>41</td><td><pre>+        line = PrettyDiff::Line.new(diff, line_str)</pre></td></tr>
+<tr class="both"><td>41</td><td>42</td><td><pre>         next if line.ignore?</pre></td></tr>
+<tr class="both"><td>42</td><td>43</td><td><pre>         @lines << line</pre></td></tr>
+<tr class="both"><td>43</td><td>44</td><td><pre>         line_numbers.act_on_line(line)</pre></td></tr>
 </table>
