@@ -1,0 +1,15 @@
+<table class="coloured-diff">
+<tr class="section"><td>...</td><td>...</td><td>@@ -2,9 +2,10 @@</td></tr>
+<tr class="both"><td>2</td><td>2</td><td> # Represent a single piece of a diff.</td></tr>
+<tr class="both"><td>3</td><td>3</td><td> # </td></tr>
+<tr class="both"><td>4</td><td>4</td><td> class PrettyDiff::Chunk #:nodoc:</td></tr>
+<tr class="left"><td>5</td><td>.</td><td>-  attr_reader :meta_info, :input, :lines</td></tr>
+<tr class="right"><td>.</td><td>5</td><td>+  attr_reader :diff, :meta_info, :input, :lines</td></tr>
+<tr class="both"><td>6</td><td>6</td><td>   </td></tr>
+<tr class="left"><td>7</td><td>.</td><td>-  def initialize(meta_info, input)</td></tr>
+<tr class="right"><td>.</td><td>7</td><td>+  def initialize(diff, meta_info, input)</td></tr>
+<tr class="right"><td>.</td><td>8</td><td>+    @diff = diff</td></tr>
+<tr class="both"><td>8</td><td>9</td><td>     @meta_info = meta_info</td></tr>
+<tr class="both"><td>9</td><td>10</td><td>     @input = input</td></tr>
+<tr class="both"><td>10</td><td>11</td><td>   end</td></tr>
+</table>
