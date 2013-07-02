@@ -30,7 +30,7 @@ module Diffed
     end
   end
   
-  class line
+  class DiffLine
     attr_reader :type, :text
     
     def initialize(line)
