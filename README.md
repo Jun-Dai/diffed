@@ -1,4 +1,4 @@
-# Diffed [![Build Status](https://secure.travis-ci.org/Jun-Dai/diffl.png)](http://travis-ci.org/Jun-Dai/diffl)
+# Diffed [![Build Status](https://secure.travis-ci.org/Jun-Dai/diffed.png)](http://travis-ci.org/Jun-Dai/diffed)
 
 This is a library for creating HTML from a unified diff string.  Currently the only use-case I am building is for retrieving diffs from `p4 describe -du 123456` and sending the HTML in an e-mail.  Hopefully I can generalise the problem to add other use-cases.
 
