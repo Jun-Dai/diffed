@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe "Diffed::Diff.to_html" do
-  it "does nothing in particular" do
+describe "Diffed::Diff.as_html_table" do
+  it "produces an html table representation of a diff, with CSS classes" do
     diff = Diffed::Diff.new(File.read("testdata/diff1.diff"))    
-    diff.to_html.strip.should == File.read("testdata/diff1.html").strip
+    output = diff.as_html_table
+    output.strip == File.read("testdata/diff1.html").strip
   end
 end

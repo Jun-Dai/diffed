@@ -1,13 +1,15 @@
-<tr class="section_head"><td>...</td><td>...</td><td>@@ -2,9 +2,10 @@</td></tr>
-<tr class="both"><td>2</td><td>2</td><td> # Represent a single piece of a diff.</td></tr>
-<tr class="both"><td>3</td><td>3</td><td> # </td></tr>
-<tr class="both"><td>4</td><td>4</td><td> class PrettyDiff::Chunk #:nodoc:</td></tr>
-<tr class="left"><td>5</td><td>.</td><td>-  attr_reader :meta_info, :input, :lines</td></tr>
-<tr class="right"><td>.</td><td>5</td><td>+  attr_reader :diff, :meta_info, :input, :lines</td></tr>
-<tr class="both"><td>6</td><td>6</td><td>   </td></tr>
-<tr class="left"><td>7</td><td>.</td><td>-  def initialize(meta_info, input)</td></tr>
-<tr class="right"><td>.</td><td>7</td><td>+  def initialize(diff, meta_info, input)</td></tr>
-<tr class="right"><td>.</td><td>8</td><td>+    @diff = diff</td></tr>
-<tr class="both"><td>8</td><td>9</td><td>     @meta_info = meta_info</td></tr>
-<tr class="both"><td>9</td><td>10</td><td>     @input = input</td></tr>
-<tr class="both"><td>10</td><td>11</td><td>   end</td></tr>
+<table cellpadding="5" style="border-collapse: collapse; border: 1px solid #CCC; font-family: Consolas, courier, monospace; font-size: 13px; color: #888">
+<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888">@@ -2,9 +2,10 @@</td></tr>
+<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"> # Represent a single piece of a diff.</td></tr>
+<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"> # </td></tr>
+<tr><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"> class PrettyDiff::Chunk #:nodoc:</td></tr>
+<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">-  attr_reader :meta_info, :input, :lines</td></tr>
+<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">+  attr_reader :diff, :meta_info, :input, :lines</td></tr>
+<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">   </td></tr>
+<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">-  def initialize(meta_info, input)</td></tr>
+<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">+  def initialize(diff, meta_info, input)</td></tr>
+<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">+    @diff = diff</td></tr>
+<tr><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">     @meta_info = meta_info</td></tr>
+<tr><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">     @input = input</td></tr>
+<tr><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000">   end</td></tr>
+</table>
