@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'diffl/version'
+require 'diffed/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "diffl"
-  gem.version       = Diffl::VERSION
+  gem.name          = "diffed"
+  gem.version       = Diffed::VERSION
   gem.authors       = ["Jun-Dai Bates-Kobashigawa"]
   gem.email         = ["jundai@kurutta.net"]
   gem.description   = %q{This is a library for creating HTML from a unified diff string, } + 

@@ -1,6 +1,6 @@
-require "diffl/version"
+require "diffed/version"
 
-module Diffl
+module Diffed
   class Diff
     def initialize(raw_diff)
       parse(raw_diff.split(/\n/))      
@@ -30,7 +30,7 @@ module Diffl
     end
   end
   
-  class DiffLine
+  class line
     attr_reader :type, :text
     
     def initialize(line)

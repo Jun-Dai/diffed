@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in diffl.gemspec
+# Gem dependencies are specified in diffed.gemspec
 gemspec
