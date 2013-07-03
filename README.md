@@ -18,7 +18,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Assuming you have a unified diff output in a string called `diff_output`, you can format it like this:
+
+```Ruby
+require 'diffed'
+
+html = Diffed::Diff.new(diff_output).as_html_table
+```
+
+By default, this will print the HTML table with inline CSS styles (e.g., `style="color: #FDD"`), for maximum compatibility when sending HTML e-mails and for inclusion in other HTML documents without having to load separate stylesheets.
+
+If you'd like to style the HTML yourself, you can have the table render with CSS classes instead of inline styles, like so:
+
+```Ruby
+html = Diffed::Diff.new(diff_output).as_html_table(false)
+```
 
 ## Contributing
 

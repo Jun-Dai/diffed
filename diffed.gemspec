@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{This is a library for creating HTML from a unified diff string, } + 
     %q{built specifically for the diff section output by "perforce describe -du", but with an eye towards solving a more general problem.}
   gem.summary       = %q{This is a library for creating HTML from a unified diff string}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/Jun-Dai/diffed"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
