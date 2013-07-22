@@ -1,4 +1,5 @@
 require "diffed/version"
+require "parsers/unified"
 
 module Diffed
   class Diff
@@ -6,19 +7,13 @@ module Diffed
       parse(raw_diff.split(/\n/))      
     end
     
-    def as_html_table(inline_styles = true)
-      html = make_table_tag(inline_styles)
+    def as_html_table(use_inline_styles = true)
+      html = make_table_tag(use_inline_styles)
       
       @sections.each do |section|
-        left_line_num = section.header.line_nums[:left][:from]
-        right_line_num = section.header.line_nums[:right][:from]        
-        
-        html << make_section_header_row(section.header, inline_styles)        
+        html << format_section_header_row(section.header, use_inline_styles)        
         section.lines.each_with_index do |line, i|
-          html << make_tr_line(line, left_line_num, right_line_num, inline_styles)
-
-          left_line_num += 1 unless line.type == :right
-          right_line_num += 1 unless line.type == :left
+          html << format_code_line(line, use_inline_styles)
         end
       end
 
@@ -26,41 +21,34 @@ module Diffed
     end
     
     private
-    def make_tr_line(line, left_line_num, right_line_num, inline_styles)
-      if inline_styles
-        make_styled_tr_line line, left_line_num, right_line_num
+    def format_code_line(line, use_inline_styles)
+      row = OutputRow.new(:code_line =>line)
+      
+      if use_inline_styles
+        format_styled_row code_line_style(line), '#000', row
       else
-        make_classed_tr_line line, left_line_num, right_line_num
+        format_classed_row line.type.to_s, row
       end
     end
       
-    def make_styled_tr_line(line, left_line_num, right_line_num)
+    def code_line_style(line)
       case line.type
       when :left
-        format_styled_tr_line '#FDD', nil, left_line_num, ".", line.text
+        '#FDD'
       when :right
-        format_styled_tr_line '#DFD', nil, ".", right_line_num, line.text
+        '#DFD'
       when :both
-        format_styled_tr_line nil, nil, left_line_num, right_line_num, line.text
-      end        
+        nil
+      end
     end
-    
-    def make_classed_tr_line(line, left_line_num, right_line_num)
-      case line.type
-      when :left
-        format_classed_tr_line "left", left_line_num, ".", line.text
-      when :right
-        format_classed_tr_line "right", ".", right_line_num, line.text
-      when :both
-        format_classed_tr_line "both", left_line_num, right_line_num, line.text
-      end        
-    end
-    
-    def make_section_header_row(header, inline_styles)
-      if inline_styles
-        format_styled_tr_line('#F0F0FF', '#888', "...", "...", header.text)
+        
+    def format_section_header_row(header, use_inline_styles)
+      row = OutputRow.new(:left => "...", :right => "...", :text => header)
+
+      if use_inline_styles
+        format_styled_row '#F0F0FF', '#888', row
       else
-        format_classed_tr_line('section', "...", "...", header.text)
+        format_classed_row 'section', row
       end
     end
     
@@ -74,119 +62,32 @@ module Diffed
       %Q{<table #{table_attributes}>\n}
     end
     
-    def format_styled_tr_line(bg_color, text_color, left_num, right_num, text)
+    def format_styled_row(bg_color, text_color, row)
       row_style = bg_color.nil? ? "" : %Q{ style="background-color: #{bg_color}"}
-      text_color = text_color || '#000'
+      text_color = text_color
       
-      %Q{<tr#{row_style}><td style="border-left: 1px solid \#CCC">#{left_num}</td><td style="border-left: 1px solid \#CCC">#{right_num}</td><td style="border-left: 1px solid \#CCC; border-right: 1px solid \#CCC; color: #{text_color}"><pre>#{text}</pre></td></tr>\n}
+      %Q{<tr#{row_style}><td style="border-left: 1px solid \#CCC">#{row.left}</td><td style="border-left: 1px solid \#CCC">#{row.right}</td><td style="border-left: 1px solid \#CCC; border-right: 1px solid \#CCC; color: #{text_color}"><pre>#{row.text}</pre></td></tr>\n}
     end
     
-    def format_classed_tr_line(css_class, left_num, right_num, text)
-      %Q{<tr class="#{css_class}"><td>#{left_num}</td><td>#{right_num}</td><td><pre>#{text}</pre></td></tr>\n}
+    def format_classed_row(css_class, row)
+      %Q{<tr class="#{css_class}"><td>#{row.left}</td><td>#{row.left}</td><td><pre>#{row.text}</pre></td></tr>\n}
     end
     
     def parse(lines)
-      @sections = []
-      curr_header, curr_lines, left_counter, right_counter = nil, [], 0, 0
+      @sections = UnifiedDiffParser.new(lines).parse!.sections
+    end
+    
+    class OutputRow
+      attr_reader :left, :right, :text
       
-      lines.each do |line|
-        if DiffHeaderLine.is_header?(line)
-          unless curr_header.nil?
-            raise "Found a header while still processing a section!  #{line}"
-          end
-          
-          curr_header, curr_lines = DiffHeaderLine.new(line), []
-        elsif curr_header.nil?
-          # Do nothing.  We haven't started yet.
-          # puts "Ignoring line: #{line}"
-        elsif line =~ /\\ No newline at end of file/
-          if curr_lines.empty?
-            @sections.last.no_new_line = true
-          else
-            curr_lines.last.no_new_line = true
-          end
+      def initialize(params = {})
+        if params[:code_line].nil?
+          @left, @right, @text = params[:left], params[:right], params[:text]
         else
-          diff_line = DiffLine.new(line)
-          curr_lines << diff_line
-          left_counter += 1 if diff_line.left?
-          right_counter += 1 if diff_line.right?
-          
-          if curr_header.section_complete? left_counter, right_counter
-            @sections << DiffSection.new(curr_header, curr_lines)
-            curr_header, curr_lines, left_counter, right_counter = nil, [], 0, 0
-          end
+          line = params[:code_line]
+          @left, @right, @text = line.left_line_num, line.right_line_num, line.text
         end
       end
-    end
-  end
-  
-  class DiffSection
-    attr_reader :header, :lines
-    
-    def initialize(header_line, lines)
-      @header, @lines = header_line, lines
-    end    
-  end    
-  
-  class DiffLine
-    attr_reader :type, :text, :no_new_line
-    
-    def initialize(line)
-      if line.start_with? "-"
-        @type = :left
-      elsif line.start_with? "+"
-        @type = :right
-      elsif line.start_with? " "
-        @type = :both
-      else
-        raise "Unparseable line: #{line}"
-      end
-      
-      @text = line
-      @no_new_line = false
-    end
-    
-    def left?
-      @type == :left || @type == :both
-    end
-    
-    def right?
-      @type == :right || @type == :both
-    end    
-    
-    def no_new_line= bool
-      # mutability like this kind of sucks, but this one's a pain to avoid.
-      @no_new_line = true
-    end    
-  end
-  
-  class DiffHeaderLine
-    attr_reader :line_nums, :text
-    
-    def initialize(line)
-      @text = line
-      
-      if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/        
-        @line_nums = {left: {from: $1.to_i, lines: $2.to_i}, right: {from: $3.to_i, lines: $4.to_i}}
-      elsif line =~ /^@@ -(\d+) \+(\d+) @@/
-        @line_nums = {left: {from: $1.to_i, lines: $1.to_i}, right: {from: $2.to_i, lines: $2.to_i}}
-      else
-        raise "Unparseable header line: #{line}"
-      end
-      
-      if @line_nums[:right][:lines] > @line_nums[:left][:lines]
-        @side_to_count = :right
-      else
-        @side_to_count = :left
-      end      
-    end
-    
-    def self.is_header?(line)
-      line.start_with? "@@ "
-    end
-    
-    def section_complete?(left_count, right_count)
-      left_count >= @line_nums[:left][:lines] && right_count >= @line_nums[:right][:lines]
     end
   end
 end
