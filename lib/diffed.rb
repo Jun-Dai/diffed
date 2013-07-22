@@ -1,5 +1,6 @@
-require "diffed/version"
-require "parsers/unified"
+require 'diffed/version'
+require 'parsers/unified'
+require 'escape_utils'
 
 module Diffed
   class Diff
@@ -78,7 +79,7 @@ module Diffed
     end
     
     class OutputRow
-      attr_reader :left, :right, :text
+      attr_reader :left, :right
       
       def initialize(params = {})
         if params[:code_line].nil?
@@ -87,6 +88,10 @@ module Diffed
           line = params[:code_line]
           @left, @right, @text = line.left_line_num, line.right_line_num, line.text
         end
+      end
+      
+      def text
+        EscapeUtils.escape_html(@text, false)
       end
     end
   end

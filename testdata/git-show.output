@@ -1,0 +1,160 @@
+commit 2045449f6b2236386c6ba33602225827c5fc3e32
+Author: Jun-Dai Bates-Kobashigawa <bako@taraval.net>
+Date:   Mon Jul 22 23:59:11 2013 +0100
+
+    Testing a git submission using two open source Java files.
+    This will give me a sample diff to use in my test scenario.
+
+diff --git a/handlebars/src/main/java/com/github/jknack/handlebars/internal/BaseTemplate.java b/handlebars/src/main/java/com/github/jknack/handlebars/internal/BaseTemplate.java
+index 851c582..a086ae0 100644
+--- a/handlebars/src/main/java/com/github/jknack/handlebars/internal/BaseTemplate.java
++++ b/handlebars/src/main/java/com/github/jknack/handlebars/internal/BaseTemplate.java
+@@ -23,7 +23,6 @@ import static org.apache.commons.lang3.Validate.isTrue;
+ import static org.apache.commons.lang3.Validate.notNull;
+ 
+ import java.io.IOException;
+-import java.io.InputStream;
+ import java.io.Writer;
+ import java.lang.reflect.InvocationHandler;
+ import java.lang.reflect.Method;
+@@ -75,7 +74,7 @@ abstract class BaseTemplate implements Template {
+   /**
+    * A Handlebars.js lock.
+    */
+-  private static final Object JS_LOCK = new Object();
++  private final Object jsLock = new Object();
+ 
+   /**
+    * A pre-compiled JavaScript function.
+@@ -85,12 +84,12 @@ abstract class BaseTemplate implements Template {
+   /**
+    * Handlerbars.js version.
+    */
+-  private static final String HBS_FILE = "/handlebars-1.0.rc.3.js";
++  private static final String HBS_FILE = "/handlebars-1.0.0.js";
+ 
+   /**
+    * A shared scope with Handlebars.js objects.
+    */
+-  private static ScriptableObject sharedScope;
++  private ScriptableObject sharedScope;
+ 
+   /**
+    * {@inheritDoc}
+@@ -287,7 +286,7 @@ abstract class BaseTemplate implements Template {
+ 
+   @Override
+   public String toJavaScript() throws IOException {
+-    synchronized (JS_LOCK) {
++    synchronized (jsLock) {
+       if (javaScript == null) {
+         org.mozilla.javascript.Context ctx = null;
+         try {
+@@ -330,7 +329,7 @@ abstract class BaseTemplate implements Template {
+    * @param ctx A rhino context.
+    * @return A new scope where handlebars.js is present.
+    */
+-  private static Scriptable newScope(final org.mozilla.javascript.Context ctx) {
++  private Scriptable newScope(final org.mozilla.javascript.Context ctx) {
+     Scriptable sharedScope = sharedScope(ctx);
+     Scriptable scope = ctx.newObject(sharedScope);
+     scope.setParentScope(null);
+@@ -345,12 +344,10 @@ abstract class BaseTemplate implements Template {
+    * @param ctx A rhino context.
+    * @return A handlebars.js scope. Shared between executions.
+    */
+-  private static Scriptable
+-      sharedScope(final org.mozilla.javascript.Context ctx) {
++  private Scriptable sharedScope(final org.mozilla.javascript.Context ctx) {
+     if (sharedScope == null) {
+       sharedScope = ctx.initStandardObjects();
+-      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1,
+-          null);
++      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1, null);
+     }
+     return sharedScope;
+   }
+@@ -361,25 +358,11 @@ abstract class BaseTemplate implements Template {
+    * @param location The handlebars.js location.
+    * @return The resource content.
+    */
+-  private static String handlebarsScript(final String location) {
+-    InputStream in = BaseTemplate.class.getResourceAsStream(location);
+-    notNull(in, "Handlebars.js script not found at " + location);
++  private String handlebarsScript(final String location) {
+     try {
+-      int ch = in.read();
+-      StringBuilder script = new StringBuilder();
+-      while (ch != -1) {
+-        script.append((char) ch);
+-        ch = in.read();
+-      }
+-      return script.toString();
++      return Files.read(location);
+     } catch (IOException ex) {
+-      throw new IllegalStateException("Unable to read file " + location);
+-    } finally {
+-      try {
+-        in.close();
+-      } catch (IOException ex) {
+-        throw new IllegalStateException("Unable to close file " + location);
+-      }
++      throw new IllegalArgumentException("Unable to read file: " + location, ex);
+     }
+   }
+ }
+diff --git a/handlebars/src/test/java/com/github/jknack/handlebars/ToStringTest.java b/handlebars/src/test/java/com/github/jknack/handlebars/ToStringTest.java
+index 08c4465..3397c15 100644
+--- a/handlebars/src/test/java/com/github/jknack/handlebars/ToStringTest.java
++++ b/handlebars/src/test/java/com/github/jknack/handlebars/ToStringTest.java
+@@ -2,32 +2,32 @@ package com.github.jknack.handlebars;
+ 
+ import static org.junit.Assert.assertEquals;
+ 
+-import org.junit.Test;
+-
+ import java.io.IOException;
+ 
++import org.junit.Test;
++
+ public class ToStringTest {
+ 
+-    public static class UnsafeString {
+-        String underlying;
++  public static class UnsafeString {
++    String underlying;
+ 
+-        public UnsafeString(String underlying) {
+-            this.underlying = underlying;
+-        }
++    public UnsafeString(final String underlying) {
++      this.underlying = underlying;
++    }
+ 
+-        @Override
+-        public String toString() {
+-            return "<h1>" + underlying + "</h1>";
+-        }
++    @Override
++    public String toString() {
++      return "<h1>" + underlying + "</h1>";
+     }
++  }
+ 
+-    @Test
+-    public void unsafeString() throws IOException {
+-        Handlebars handlebars = new Handlebars();
+-        Template template = handlebars.compileInline("{{this}}");
++  @Test
++  public void unsafeString() throws IOException {
++    Handlebars handlebars = new Handlebars();
++    Template template = handlebars.compileInline("{{this}}");
+ 
+-        String result = template.apply(new UnsafeString("Hello"));
++    String result = template.apply(new UnsafeString("Hello"));
+ 
+-        assertEquals("&lt;h1&gt;Hello&lt;/h1&gt;", result);
+-    }
++    assertEquals("&lt;h1&gt;Hello&lt;/h1&gt;", result);
++  }
+ }

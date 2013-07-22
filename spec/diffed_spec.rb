@@ -8,10 +8,16 @@ describe "Diffed::Diff.as_html_table" do
   end
   
   it "produces an html table representation of the diff portions of the output of 'git show', with CSS styles inline" do
-    diff = Diffed::Diff.new(File.read("testdata/git-show.diff"))
+    diff = Diffed::Diff.new(File.read("testdata/git-show.output"))
     output = diff.as_html_table
     output.strip == File.read("testdata/git-show.styled.html").strip
-  end  
+  end
+  
+  it "produces an html table representation of the diff portions of the output of 'p4 describe -du', with CSS styles inline" do
+    diff = Diffed::Diff.new(File.read("testdata/p4-describe.output"))
+    output = diff.as_html_table
+    output.strip == File.read("testdata/p4-describe.styled.html").strip
+  end
   
   it "produces an html table representation of a diff, with CSS classes" do
     diff = Diffed::Diff.new(File.read("testdata/diff1.diff"))

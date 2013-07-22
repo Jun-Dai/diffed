@@ -79,7 +79,16 @@ module Diffed
       end
       
       def line(left_counter, right_counter)
-        Line.new(@type, @line, left_counter, right_counter)        
+        Line.new(@type, @line_text, left_line_num(left_counter), right_line_num(right_counter))
+      end
+      
+      private
+      def left_line_num(left_counter)
+        @type == :right ? "." : left_counter
+      end
+      
+      def right_line_num(right_counter)
+        @type == :left ? "." : right_counter
       end
     end
   
