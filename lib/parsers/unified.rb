@@ -13,33 +13,18 @@ module Diffed
       
       @lines.each do |line|
         if HeaderLineParser.is_header?(line)
-          unless @curr_header.nil?
-            raise "Found a header while still processing a section!  #{line}"
-          end
-          
           @curr_header, @curr_lines = HeaderLineParser.new(line), []
         elsif @curr_header.nil?
           # Do nothing.  We haven't started yet.
           # puts "Ignoring line: #{line}"
         elsif line =~ /\\ No newline at end of file/
-          if @curr_lines.empty?
-            @sections.last.lines.last.no_newline = true
-          else
-            @curr_lines.last.no_newline = true
-          end
+          handle_missing_newline
         else
-          line_parser = LineParser.new(line)          
-          @left_counter, @right_counter = line_parser.increment(@left_counter, @right_counter)          
-          @curr_lines << line_parser.line(@left_counter, @right_counter)
-          
-          if @curr_header.section_complete? @left_counter, @right_counter
-            @sections << Section.new(@curr_header.line, @curr_lines)
-            reset_section!
-          end
+          parse_code_line line
         end
       end      
       
-      self
+      self # evidence that I'm a Java developer at heart?
     end
     
     def sections
@@ -48,6 +33,25 @@ module Diffed
     end
     
     private
+    def handle_missing_newline
+      if @curr_lines.empty?
+        @sections.last.lines.last.no_newline = true
+      else
+        @curr_lines.last.no_newline = true
+      end      
+    end
+    
+    def parse_code_line(line)
+      line_parser = LineParser.new(line)          
+      @left_counter, @right_counter = line_parser.increment(@left_counter, @right_counter)          
+      @curr_lines << line_parser.line(@left_counter, @right_counter)
+      
+      if @curr_header.section_complete? @left_counter, @right_counter
+        @sections << Section.new(@curr_header.line, @curr_lines)
+        reset_section!
+      end      
+    end
+    
     def reset_section!
       @curr_header, @curr_lines, @left_counter, @right_counter = nil, [], 0, 0
     end 
