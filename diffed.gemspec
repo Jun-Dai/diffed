@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["jundai@kurutta.net"]
   gem.description   = %q{This is a library for creating HTML from a unified diff string, built specifically for the diff section } +
     %q{output by "perforce describe -du" or "git show [commit SHA]", but with an eye towards solving a more general problem.  } +
-    %q{It supports two modes: with inline styles or with CSS classes(which you can style yourself).  Either mode outputs an HTML table }
+    %q{It supports two modes: with inline styles or with CSS classes(which you can style yourself).  Either mode outputs an HTML table } +
     %q{that you may want to include in a Web page or an HTML e-mail.}
   gem.summary       = %q{This is a library for creating HTML from a unified diff string}
   gem.homepage      = "http://github.com/Jun-Dai/diffed"
