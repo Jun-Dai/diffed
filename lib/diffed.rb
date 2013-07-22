@@ -87,19 +87,34 @@ module Diffed
     
     def parse(lines)
       @sections = []
-      curr_header, curr_lines = nil, []      
+      curr_header, curr_lines, left_counter, right_counter = nil, [], 0, 0
       
       lines.each do |line|
         if DiffHeaderLine.is_header?(line)
           unless curr_header.nil?
-            @sections << DiffSection.new(curr_header, curr_lines)
+            raise "Found a header while still processing a section!  #{line}"
           end
           
           curr_header, curr_lines = DiffHeaderLine.new(line), []
+        elsif curr_header.nil?
+          # Do nothing.  We haven't started yet.
+          # puts "Ignoring line: #{line}"
         elsif line =~ /\\ No newline at end of file/
-          curr_lines.last.no_new_line = true
+          if curr_lines.empty?
+            @sections.last.no_new_line = true
+          else
+            curr_lines.last.no_new_line = true
+          end
         else
-          curr_lines << DiffLine.new(line)
+          diff_line = DiffLine.new(line)
+          curr_lines << diff_line
+          left_counter += 1 if diff_line.left?
+          right_counter += 1 if diff_line.right?
+          
+          if curr_header.section_complete? left_counter, right_counter
+            @sections << DiffSection.new(curr_header, curr_lines)
+            curr_header, curr_lines, left_counter, right_counter = nil, [], 0, 0
+          end
         end
       end
     end
@@ -129,6 +144,14 @@ module Diffed
       
       @text = line
       @no_new_line = false
+    end
+    
+    def left?
+      @type == :left || @type == :both
+    end
+    
+    def right?
+      @type == :right || @type == :both
     end    
     
     def no_new_line= bool
@@ -141,16 +164,29 @@ module Diffed
     attr_reader :line_nums, :text
     
     def initialize(line)
-      if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/
-        @text = line
-        @line_nums = {left: {from: $1.to_i, to: $2.to_i}, right: {from: $1.to_i, to: $2.to_i}}
+      @text = line
+      
+      if line =~ /^@@ -(\d+),(\d+) \+(\d+),(\d+) @@/        
+        @line_nums = {left: {from: $1.to_i, lines: $2.to_i}, right: {from: $3.to_i, lines: $4.to_i}}
+      elsif line =~ /^@@ -(\d+) \+(\d+) @@/
+        @line_nums = {left: {from: $1.to_i, lines: $1.to_i}, right: {from: $2.to_i, lines: $2.to_i}}
       else
         raise "Unparseable header line: #{line}"
       end
+      
+      if @line_nums[:right][:lines] > @line_nums[:left][:lines]
+        @side_to_count = :right
+      else
+        @side_to_count = :left
+      end      
     end
     
     def self.is_header?(line)
       line.start_with? "@@ "
+    end
+    
+    def section_complete?(left_count, right_count)
+      left_count >= @line_nums[:left][:lines] && right_count >= @line_nums[:right][:lines]
     end
   end
 end
