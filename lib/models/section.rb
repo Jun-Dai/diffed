@@ -5,14 +5,14 @@ module Diffed
     include DiffHtml
     attr_reader :header, :lines
   
-    def initialize(header, lines, row_nums_to_highlight = [])
-      @header, @lines, @row_nums_to_highlight = header, lines, row_nums_to_highlight
+    def initialize(header, lines)
+      @header, @lines = header, lines
     end
     
-    def as_html_rows(use_inline_styles)
+    def as_html_rows(use_inline_styles, row_nums_to_highlight = [])
       html = format_section_header_row(use_inline_styles)
       lines.each_with_index do |line, i| 
-        html << line.as_html_row(use_inline_styles, @row_nums_to_highlight.include?(i))
+        html << line.as_html_row(use_inline_styles, row_nums_to_highlight.include?(i + 1))
       end
       
       html

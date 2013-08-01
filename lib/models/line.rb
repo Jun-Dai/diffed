@@ -31,9 +31,9 @@ module Diffed
       row = OutputRow.new(:code_line => self)
       
       if use_inline_styles
-        format_styled_row code_line_style, '#000', row
+        format_styled_row code_line_style, '#000', row, :highlight => highlight
       else
-        format_classed_row type.to_s, row
+        format_classed_row type.to_s, row, :highlight => highlight
       end
     end
       

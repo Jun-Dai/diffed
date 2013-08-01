@@ -1,0 +1,14 @@
+@@ -35,9 +35,10 @@ private
+   # Parse the input searching for lines. Initialize Line object for every line.
+   # Return an array of Line objects.
+   def find_lines!
+-    returning(@lines = []) do
+-      input.split(/\r?\n/).each_with_index do |line_str, idx|
+-        line = PrettyDiff::Line.new(diff, line_str, :number => idx)
++    @lines = []
++    @lines.tap do
++      input.split(/\r?\n/).each do |line_str|
++        line = PrettyDiff::Line.new(diff, line_str)
+         next if line.ignore?
+         @lines << line
+         line_numbers.act_on_line(line)

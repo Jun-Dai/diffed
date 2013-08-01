@@ -1,22 +1,20 @@
 module Diffed
   module DiffHtml
-    def as_html_table(use_inline_styles=true)
+    def as_html_table(use_inline_styles=true, row_nums_to_highlight = [])
       html = make_table_tag(use_inline_styles)
       
       sections.each do |section|
-        html << section.as_html_rows(use_inline_styles)
+        html << section.as_html_rows(use_inline_styles, row_nums_to_highlight)
       end
 
       html << "</table>"
     end
     
     private     
-    def format_styled_row(bg_color, text_color, row, opts = {})
-      opts = {highlight: false}.merge(opts)
-      
+    def format_styled_row(bg_color, text_color, row, opts = {})      
       row_styles = []
-      row_styles <<  "background-color: #{bg_color}" unless bg_color.nil?
-      row_styles <<  "font-weight: bold" if opts[:highlight]
+      row_styles << "background-color: #{bg_color}" unless bg_color.nil?
+      row_styles << "font-weight: bold" if opts[:highlight]
       
       row_style_attr = row_styles.empty? ? "" : %Q{ style="#{row_styles.join('; ')}" }
       text_color = text_color
@@ -31,8 +29,9 @@ module Diffed
 EOS
     end
     
-    def format_classed_row(css_class, row)
-      %Q{<tr class="#{css_class}"><td>#{row.left}</td><td>#{row.right}</td><td><pre>#{row.text}</pre></td></tr>\n}
+    def format_classed_row(css_class, row, opts = {})
+      class_attr = %Q{ class="#{css_class}#{opts[:highlight] ? ' highlight' : ''}"}
+      %Q{<tr#{class_attr}><td>#{row.left}</td><td>#{row.right}</td><td><pre>#{row.text}</pre></td></tr>\n}
     end
 
     def make_table_tag(inline_styles)
