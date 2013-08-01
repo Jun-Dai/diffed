@@ -12,6 +12,8 @@ module Diffed
   end
   
   class Diff
+    attr_accessor :sections
+    
     def initialize(lines)
       parse(lines)      
     end
