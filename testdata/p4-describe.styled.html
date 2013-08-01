@@ -1,147 +1,727 @@
-<table cellpadding="5" style="border-collapse: collapse; border: 1px solid #CCC; font-family: Consolas, courier, monospace; font-size: 13px; color: #888">
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -23,7 +23,6 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import static org.apache.commons.lang3.Validate.notNull;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.io.IOException;</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-import java.io.InputStream;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.io.Writer;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.lang.reflect.InvocationHandler;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.lang.reflect.Method;</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -75,7 +74,7 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A Handlebars.js lock.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static final Object JS_LOCK = new Object();</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private final Object jsLock = new Object();</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A pre-compiled JavaScript function.</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -85,12 +84,12 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * Handlerbars.js version.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static final String HBS_FILE = &quot;/handlebars-1.0.rc.3.js&quot;;</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private static final String HBS_FILE = &quot;/handlebars-1.0.0.js&quot;;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A shared scope with Handlebars.js objects.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static ScriptableObject sharedScope;</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private ScriptableObject sharedScope;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * {@inheritDoc}</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -287,7 +286,7 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   @Override</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   public String toJavaScript() throws IOException {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    synchronized (JS_LOCK) {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    synchronized (jsLock) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>       if (javaScript == null) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         org.mozilla.javascript.Context ctx = null;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         try {</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -330,7 +329,7 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param ctx A rhino context.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return A new scope where handlebars.js is present.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static Scriptable newScope(final org.mozilla.javascript.Context ctx) {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private Scriptable newScope(final org.mozilla.javascript.Context ctx) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     Scriptable sharedScope = sharedScope(ctx);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     Scriptable scope = ctx.newObject(sharedScope);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     scope.setParentScope(null);</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -345,12 +344,10 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param ctx A rhino context.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return A handlebars.js scope. Shared between executions.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static Scriptable</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      sharedScope(final org.mozilla.javascript.Context ctx) {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private Scriptable sharedScope(final org.mozilla.javascript.Context ctx) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     if (sharedScope == null) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>       sharedScope = ctx.initStandardObjects();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1,</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-          null);</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1, null);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     return sharedScope;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   }</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -361,25 +358,11 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param location The handlebars.js location.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return The resource content.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static String handlebarsScript(final String location) {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    InputStream in = BaseTemplate.class.getResourceAsStream(location);</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    notNull(in, &quot;Handlebars.js script not found at &quot; + location);</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private String handlebarsScript(final String location) {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     try {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      int ch = in.read();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      StringBuilder script = new StringBuilder();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      while (ch != -1) {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        script.append((char) ch);</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        ch = in.read();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">13</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      }</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">14</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      return script.toString();</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      return Files.read(location);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">15</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     } catch (IOException ex) {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">16</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      throw new IllegalStateException(&quot;Unable to read file &quot; + location);</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">17</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    } finally {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">18</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      try {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">19</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        in.close();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">20</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      } catch (IOException ex) {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">21</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        throw new IllegalStateException(&quot;Unable to close file &quot; + location);</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">22</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      }</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      throw new IllegalArgumentException(&quot;Unable to read file: &quot; + location, ex);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">23</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">24</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">25</td><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> }</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -2,32 +2,32 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import static org.junit.Assert.assertEquals;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+import java.io.IOException;</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import org.junit.Test;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-import java.io.IOException;</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> public class ToStringTest {</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    public static class UnsafeString {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        String underlying;</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  public static class UnsafeString {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    String underlying;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">13</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        public UnsafeString(String underlying) {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">14</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-            this.underlying = underlying;</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">15</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        }</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">13</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    public UnsafeString(final String underlying) {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">14</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      this.underlying = underlying;</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">15</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">16</td><td style="border-left: 1px solid #CCC">16</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">17</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        @Override</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">18</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        public String toString() {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">19</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-            return &quot;&lt;h1&gt;&quot; + underlying + &quot;&lt;/h1&gt;&quot;;</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">20</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        }</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">17</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @Override</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">18</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    public String toString() {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">19</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      return &quot;&lt;h1&gt;&quot; + underlying + &quot;&lt;/h1&gt;&quot;;</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">21</td><td style="border-left: 1px solid #CCC">20</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">21</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">22</td><td style="border-left: 1px solid #CCC">22</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">23</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    @Test</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">24</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    public void unsafeString() throws IOException {</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">25</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        Handlebars handlebars = new Handlebars();</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">26</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        Template template = handlebars.compileInline(&quot;{{this}}&quot;);</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">23</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  @Test</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">24</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  public void unsafeString() throws IOException {</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">25</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    Handlebars handlebars = new Handlebars();</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">26</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    Template template = handlebars.compileInline(&quot;{{this}}&quot;);</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">27</td><td style="border-left: 1px solid #CCC">27</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">28</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        String result = template.apply(new UnsafeString(&quot;Hello&quot;));</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">28</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    String result = template.apply(new UnsafeString(&quot;Hello&quot;));</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">29</td><td style="border-left: 1px solid #CCC">29</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">30</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        assertEquals(&quot;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&quot;, result);</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">31</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    }</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">30</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    assertEquals(&quot;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&quot;, result);</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">31</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  }</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">32</td><td style="border-left: 1px solid #CCC">32</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> }</pre></td></tr>
+<table cellpadding="5" style="border-collapse: collapse; border: 1px solid #CCC; font-family: Consolas, courier, monospace; font-size: 11px; color: #888">
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -23,7 +23,6 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">23</td>
+        <td style="border-left: 1px solid #CCC">23</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import static org.apache.commons.lang3.Validate.notNull;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">24</td>
+        <td style="border-left: 1px solid #CCC">24</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.io.IOException;</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-import java.io.InputStream;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.io.Writer;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.lang.reflect.InvocationHandler;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">29</td>
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import java.lang.reflect.Method;</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -75,7 +74,7 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">75</td>
+        <td style="border-left: 1px solid #CCC">74</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">76</td>
+        <td style="border-left: 1px solid #CCC">75</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A Handlebars.js lock.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">77</td>
+        <td style="border-left: 1px solid #CCC">76</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">78</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static final Object JS_LOCK = new Object();</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">77</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private final Object jsLock = new Object();</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">79</td>
+        <td style="border-left: 1px solid #CCC">78</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">80</td>
+        <td style="border-left: 1px solid #CCC">79</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">81</td>
+        <td style="border-left: 1px solid #CCC">80</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A pre-compiled JavaScript function.</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -85,12 +84,12 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">85</td>
+        <td style="border-left: 1px solid #CCC">84</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">86</td>
+        <td style="border-left: 1px solid #CCC">85</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * Handlerbars.js version.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">87</td>
+        <td style="border-left: 1px solid #CCC">86</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">88</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static final String HBS_FILE = &quot;/handlebars-1.0.rc.3.js&quot;;</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">87</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private static final String HBS_FILE = &quot;/handlebars-1.0.0.js&quot;;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">89</td>
+        <td style="border-left: 1px solid #CCC">88</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">90</td>
+        <td style="border-left: 1px solid #CCC">89</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">91</td>
+        <td style="border-left: 1px solid #CCC">90</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * A shared scope with Handlebars.js objects.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">92</td>
+        <td style="border-left: 1px solid #CCC">91</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">93</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static ScriptableObject sharedScope;</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">92</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private ScriptableObject sharedScope;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">94</td>
+        <td style="border-left: 1px solid #CCC">93</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">95</td>
+        <td style="border-left: 1px solid #CCC">94</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   /**</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">96</td>
+        <td style="border-left: 1px solid #CCC">95</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * {@inheritDoc}</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -287,7 +286,7 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">287</td>
+        <td style="border-left: 1px solid #CCC">286</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">288</td>
+        <td style="border-left: 1px solid #CCC">287</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   @Override</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">289</td>
+        <td style="border-left: 1px solid #CCC">288</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   public String toJavaScript() throws IOException {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">290</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    synchronized (JS_LOCK) {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">289</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    synchronized (jsLock) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">291</td>
+        <td style="border-left: 1px solid #CCC">290</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>       if (javaScript == null) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">292</td>
+        <td style="border-left: 1px solid #CCC">291</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         org.mozilla.javascript.Context ctx = null;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">293</td>
+        <td style="border-left: 1px solid #CCC">292</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         try {</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -330,7 +329,7 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">330</td>
+        <td style="border-left: 1px solid #CCC">329</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param ctx A rhino context.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">331</td>
+        <td style="border-left: 1px solid #CCC">330</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return A new scope where handlebars.js is present.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">332</td>
+        <td style="border-left: 1px solid #CCC">331</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">333</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static Scriptable newScope(final org.mozilla.javascript.Context ctx) {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">332</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private Scriptable newScope(final org.mozilla.javascript.Context ctx) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">334</td>
+        <td style="border-left: 1px solid #CCC">333</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     Scriptable sharedScope = sharedScope(ctx);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">335</td>
+        <td style="border-left: 1px solid #CCC">334</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     Scriptable scope = ctx.newObject(sharedScope);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">336</td>
+        <td style="border-left: 1px solid #CCC">335</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     scope.setParentScope(null);</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -345,12 +344,10 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">345</td>
+        <td style="border-left: 1px solid #CCC">344</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param ctx A rhino context.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">346</td>
+        <td style="border-left: 1px solid #CCC">345</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return A handlebars.js scope. Shared between executions.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">347</td>
+        <td style="border-left: 1px solid #CCC">346</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">348</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static Scriptable</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">349</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      sharedScope(final org.mozilla.javascript.Context ctx) {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">347</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private Scriptable sharedScope(final org.mozilla.javascript.Context ctx) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">350</td>
+        <td style="border-left: 1px solid #CCC">348</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     if (sharedScope == null) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">351</td>
+        <td style="border-left: 1px solid #CCC">349</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>       sharedScope = ctx.initStandardObjects();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">352</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1,</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">353</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-          null);</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">350</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      ctx.evaluateString(sharedScope, handlebarsScript(HBS_FILE), HBS_FILE, 1, null);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">354</td>
+        <td style="border-left: 1px solid #CCC">351</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">355</td>
+        <td style="border-left: 1px solid #CCC">352</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     return sharedScope;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">356</td>
+        <td style="border-left: 1px solid #CCC">353</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   }</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -361,25 +358,11 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">361</td>
+        <td style="border-left: 1px solid #CCC">358</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @param location The handlebars.js location.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">362</td>
+        <td style="border-left: 1px solid #CCC">359</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    * @return The resource content.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">363</td>
+        <td style="border-left: 1px solid #CCC">360</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>    */</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">364</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  private static String handlebarsScript(final String location) {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">365</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    InputStream in = BaseTemplate.class.getResourceAsStream(location);</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">366</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    notNull(in, &quot;Handlebars.js script not found at &quot; + location);</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">361</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  private String handlebarsScript(final String location) {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">367</td>
+        <td style="border-left: 1px solid #CCC">362</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     try {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">368</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      int ch = in.read();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">369</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      StringBuilder script = new StringBuilder();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">370</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      while (ch != -1) {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">371</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        script.append((char) ch);</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">372</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        ch = in.read();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">373</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      }</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">374</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      return script.toString();</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">363</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      return Files.read(location);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">375</td>
+        <td style="border-left: 1px solid #CCC">364</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     } catch (IOException ex) {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">376</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      throw new IllegalStateException(&quot;Unable to read file &quot; + location);</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">377</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    } finally {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">378</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      try {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">379</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        in.close();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">380</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      } catch (IOException ex) {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">381</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        throw new IllegalStateException(&quot;Unable to close file &quot; + location);</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">382</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      }</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">365</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      throw new IllegalArgumentException(&quot;Unable to read file: &quot; + location, ex);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">383</td>
+        <td style="border-left: 1px solid #CCC">366</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">384</td>
+        <td style="border-left: 1px solid #CCC">367</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">385</td>
+        <td style="border-left: 1px solid #CCC">368</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> }</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -2,32 +2,32 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">2</td>
+        <td style="border-left: 1px solid #CCC">2</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">3</td>
+        <td style="border-left: 1px solid #CCC">3</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import static org.junit.Assert.assertEquals;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">4</td>
+        <td style="border-left: 1px solid #CCC">4</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">5</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+import java.io.IOException;</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">6</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">5</td>
+        <td style="border-left: 1px solid #CCC">7</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> import org.junit.Test;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">6</td>
+        <td style="border-left: 1px solid #CCC">8</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">7</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-import java.io.IOException;</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">8</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">9</td>
+        <td style="border-left: 1px solid #CCC">9</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> public class ToStringTest {</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">10</td>
+        <td style="border-left: 1px solid #CCC">10</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">11</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    public static class UnsafeString {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">12</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        String underlying;</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">11</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  public static class UnsafeString {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">12</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    String underlying;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">13</td>
+        <td style="border-left: 1px solid #CCC">13</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">14</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        public UnsafeString(String underlying) {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">15</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-            this.underlying = underlying;</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">16</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        }</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">14</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    public UnsafeString(final String underlying) {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">15</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      this.underlying = underlying;</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">16</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">17</td>
+        <td style="border-left: 1px solid #CCC">17</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">18</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        @Override</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">19</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        public String toString() {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">20</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-            return &quot;&lt;h1&gt;&quot; + underlying + &quot;&lt;/h1&gt;&quot;;</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">21</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        }</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">18</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @Override</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">19</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    public String toString() {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">20</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      return &quot;&lt;h1&gt;&quot; + underlying + &quot;&lt;/h1&gt;&quot;;</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">22</td>
+        <td style="border-left: 1px solid #CCC">21</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     }</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">22</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">23</td>
+        <td style="border-left: 1px solid #CCC">23</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">24</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    @Test</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    public void unsafeString() throws IOException {</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        Handlebars handlebars = new Handlebars();</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        Template template = handlebars.compileInline(&quot;{{this}}&quot;);</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">24</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  @Test</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  public void unsafeString() throws IOException {</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    Handlebars handlebars = new Handlebars();</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    Template template = handlebars.compileInline(&quot;{{this}}&quot;);</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">29</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        String result = template.apply(new UnsafeString(&quot;Hello&quot;));</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">29</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    String result = template.apply(new UnsafeString(&quot;Hello&quot;));</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">30</td>
+        <td style="border-left: 1px solid #CCC">30</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">31</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        assertEquals(&quot;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&quot;, result);</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">32</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    }</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">31</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    assertEquals(&quot;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&quot;, result);</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">32</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+  }</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">33</td>
+        <td style="border-left: 1px solid #CCC">33</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> }</pre></td>
+      </tr>
 </table>

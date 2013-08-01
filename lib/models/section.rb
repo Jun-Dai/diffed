@@ -1,17 +1,20 @@
-require 'formatters/html'
+require 'formatters/diff_html'
 
 module Diffed
   class Section
-    include Html
+    include DiffHtml
     attr_reader :header, :lines
   
-    def initialize(header, lines)
-      @header, @lines = header, lines
+    def initialize(header, lines, row_nums_to_highlight = [])
+      @header, @lines, @row_nums_to_highlight = header, lines, row_nums_to_highlight
     end
     
     def as_html_rows(use_inline_styles)
       html = format_section_header_row(use_inline_styles)
-      lines.each { |line| html << line.as_html_row(use_inline_styles) }
+      lines.each_with_index do |line, i| 
+        html << line.as_html_row(use_inline_styles, @row_nums_to_highlight.include?(i))
+      end
+      
       html
     end
     

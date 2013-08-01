@@ -1,52 +1,282 @@
-<table cellpadding="5" style="border-collapse: collapse; border: 1px solid #CCC; font-family: Consolas, courier, monospace; font-size: 13px; color: #888">
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -1,22 +1,22 @@</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC">1</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> #</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC">2</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> # Represent a single piece of a diff.</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-# </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">3</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+#</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC">4</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> class PrettyDiff::Chunk #:nodoc:</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC">5</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   attr_reader :diff, :meta_info, :input, :lines</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">6</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC">7</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def initialize(diff, meta_info, input)</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC">8</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @diff = diff</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC">9</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @meta_info = meta_info</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC">10</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @input = input</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC">11</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">12</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">13</td><td style="border-left: 1px solid #CCC">13</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Generate HTML presentation for a Chunk. Return a string.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">14</td><td style="border-left: 1px solid #CCC">14</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def to_html</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">15</td><td style="border-left: 1px solid #CCC">15</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     # We have to find lines before we can call line numbers methods.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">16</td><td style="border-left: 1px solid #CCC">16</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     find_lines!</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">17</td><td style="border-left: 1px solid #CCC">17</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     generator.generate</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">18</td><td style="border-left: 1px solid #CCC">18</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">19</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">19</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">20</td><td style="border-left: 1px solid #CCC">20</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Return LineNumbers object that represents two columns of numbers</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">21</td><td style="border-left: 1px solid #CCC">21</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # that will be displayed on the left of the HTML presentation.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">22</td><td style="border-left: 1px solid #CCC">22</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   #</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -25,7 +25,7 @@ class PrettyDiff::Chunk #:nodoc:</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">25</td><td style="border-left: 1px solid #CCC">25</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def line_numbers</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">26</td><td style="border-left: 1px solid #CCC">26</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @_line_numbers ||= PrettyDiff::LineNumbers.new(diff, meta_info)</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">27</td><td style="border-left: 1px solid #CCC">27</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">28</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">28</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">29</td><td style="border-left: 1px solid #CCC">29</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> private</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">30</td><td style="border-left: 1px solid #CCC">30</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">31</td><td style="border-left: 1px solid #CCC">31</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def generator</pre></td></tr>
-<tr style="background-color: #F0F0FF"><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC">...</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -35,9 +35,10 @@ private</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">35</td><td style="border-left: 1px solid #CCC">35</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Parse the input searching for lines. Initialize Line object for every line.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">36</td><td style="border-left: 1px solid #CCC">36</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Return an array of Line objects.</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">37</td><td style="border-left: 1px solid #CCC">37</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def find_lines!</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">38</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    returning(@lines = []) do</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">39</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td></tr>
-<tr style="background-color: #FDD"><td style="border-left: 1px solid #CCC">40</td><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number => idx)</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">38</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @lines = []</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">39</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @lines.tap do</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">40</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      input.split(/\r?\n/).each do |line_str|</pre></td></tr>
-<tr style="background-color: #DFD"><td style="border-left: 1px solid #CCC">.</td><td style="border-left: 1px solid #CCC">41</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+        line = PrettyDiff::Line.new(diff, line_str)</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">41</td><td style="border-left: 1px solid #CCC">42</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         next if line.ignore?</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">42</td><td style="border-left: 1px solid #CCC">43</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         @lines << line</pre></td></tr>
-<tr><td style="border-left: 1px solid #CCC">43</td><td style="border-left: 1px solid #CCC">44</td><td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         line_numbers.act_on_line(line)</pre></td></tr>
+<table cellpadding="5" style="border-collapse: collapse; border: 1px solid #CCC; font-family: Consolas, courier, monospace; font-size: 11px; color: #888">
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -1,22 +1,22 @@</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">1</td>
+        <td style="border-left: 1px solid #CCC">1</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> #</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">2</td>
+        <td style="border-left: 1px solid #CCC">2</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> # Represent a single piece of a diff.</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">3</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-# </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">3</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+#</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">4</td>
+        <td style="border-left: 1px solid #CCC">4</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> class PrettyDiff::Chunk #:nodoc:</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">5</td>
+        <td style="border-left: 1px solid #CCC">5</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   attr_reader :diff, :meta_info, :input, :lines</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">6</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">6</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">7</td>
+        <td style="border-left: 1px solid #CCC">7</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def initialize(diff, meta_info, input)</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">8</td>
+        <td style="border-left: 1px solid #CCC">8</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @diff = diff</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">9</td>
+        <td style="border-left: 1px solid #CCC">9</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @meta_info = meta_info</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">10</td>
+        <td style="border-left: 1px solid #CCC">10</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @input = input</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">11</td>
+        <td style="border-left: 1px solid #CCC">11</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">12</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">12</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">13</td>
+        <td style="border-left: 1px solid #CCC">13</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Generate HTML presentation for a Chunk. Return a string.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">14</td>
+        <td style="border-left: 1px solid #CCC">14</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def to_html</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">15</td>
+        <td style="border-left: 1px solid #CCC">15</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     # We have to find lines before we can call line numbers methods.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">16</td>
+        <td style="border-left: 1px solid #CCC">16</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     find_lines!</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">17</td>
+        <td style="border-left: 1px solid #CCC">17</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     generator.generate</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">18</td>
+        <td style="border-left: 1px solid #CCC">18</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">19</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">19</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">20</td>
+        <td style="border-left: 1px solid #CCC">20</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Return LineNumbers object that represents two columns of numbers</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">21</td>
+        <td style="border-left: 1px solid #CCC">21</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # that will be displayed on the left of the HTML presentation.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">22</td>
+        <td style="border-left: 1px solid #CCC">22</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   #</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -25,7 +25,7 @@ class PrettyDiff::Chunk #:nodoc:</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC">25</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def line_numbers</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC">26</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     @_line_numbers ||= PrettyDiff::LineNumbers.new(diff, meta_info)</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC">27</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-  </pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">28</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">29</td>
+        <td style="border-left: 1px solid #CCC">29</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> private</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">30</td>
+        <td style="border-left: 1px solid #CCC">30</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">31</td>
+        <td style="border-left: 1px solid #CCC">31</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def generator</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -35,9 +35,10 @@ private</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">35</td>
+        <td style="border-left: 1px solid #CCC">35</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Parse the input searching for lines. Initialize Line object for every line.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">36</td>
+        <td style="border-left: 1px solid #CCC">36</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   # Return an array of Line objects.</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">37</td>
+        <td style="border-left: 1px solid #CCC">37</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   def find_lines!</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">38</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-    returning(@lines = []) do</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">39</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">40</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number =&gt; idx)</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">38</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @lines = []</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">39</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+    @lines.tap do</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">40</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+      input.split(/\r?\n/).each do |line_str|</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">41</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+        line = PrettyDiff::Line.new(diff, line_str)</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">41</td>
+        <td style="border-left: 1px solid #CCC">42</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         next if line.ignore?</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">42</td>
+        <td style="border-left: 1px solid #CCC">43</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         @lines &lt;&lt; line</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">43</td>
+        <td style="border-left: 1px solid #CCC">44</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>         line_numbers.act_on_line(line)</pre></td>
+      </tr>
+      <tr style="background-color: #F0F0FF" >
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC">...</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #888"><pre>@@ -45,4 +46,4 @@ private</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">45</td>
+        <td style="border-left: 1px solid #CCC">46</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>     end</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">46</td>
+        <td style="border-left: 1px solid #CCC">47</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>   end</pre></td>
+      </tr>
+      <tr>
+        <td style="border-left: 1px solid #CCC">47</td>
+        <td style="border-left: 1px solid #CCC">48</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre> </pre></td>
+      </tr>
+      <tr style="background-color: #FDD" >
+        <td style="border-left: 1px solid #CCC">48</td>
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>-end</pre></td>
+      </tr>
+      <tr style="background-color: #DFD" >
+        <td style="border-left: 1px solid #CCC">.</td>
+        <td style="border-left: 1px solid #CCC">49</td>
+        <td style="border-left: 1px solid #CCC; border-right: 1px solid #CCC; color: #000"><pre>+end</pre></td>
+      </tr>
 </table>

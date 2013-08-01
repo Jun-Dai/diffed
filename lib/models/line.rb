@@ -1,8 +1,8 @@
-require 'formatters/html'
+require 'formatters/diff_html'
 
 module Diffed
   class Line
-    include Html
+    include DiffHtml
     attr_reader :type, :text, :left_line_num, :right_line_num, :no_newline
   
     def initialize(type, text, left_line_num, right_line_num)
@@ -22,12 +22,12 @@ module Diffed
       @no_newline = bool
     end 
     
-    def as_html_row(use_inline_styles)
-      format_code_line(use_inline_styles)
+    def as_html_row(use_inline_styles, highlight = false)
+      format_code_line(use_inline_styles, highlight)
     end  
     
     private
-    def format_code_line(use_inline_styles)
+    def format_code_line(use_inline_styles, highlight)
       row = OutputRow.new(:code_line => self)
       
       if use_inline_styles

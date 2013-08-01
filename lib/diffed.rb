@@ -1,4 +1,5 @@
 require 'diffed/version'
+require 'formatters/diff_html'
 require 'parsers/unified'
 require 'escape_utils'
 
@@ -12,7 +13,7 @@ module Diffed
   end
   
   class Diff
-    include Html
+    include DiffHtml
     attr_accessor :sections
     
     def initialize(lines)

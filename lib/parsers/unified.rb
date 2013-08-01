@@ -43,8 +43,8 @@ module Diffed
     
     def parse_code_line(line)
       line_parser = LineParser.new(line)          
-      @left_counter, @right_counter = line_parser.increment(@left_counter, @right_counter)          
-      @curr_lines << line_parser.line(@left_counter, @right_counter)
+      @curr_lines << line_parser.line(@curr_header, @left_counter, @right_counter)
+      @left_counter, @right_counter = line_parser.increment(@left_counter, @right_counter)                
       
       if @curr_header.section_complete? @left_counter, @right_counter
         @sections << Section.new(@curr_header.line, @curr_lines)
@@ -82,17 +82,19 @@ module Diffed
         end
       end
       
-      def line(left_counter, right_counter)
-        Line.new(@type, @line_text, left_line_num(left_counter), right_line_num(right_counter))
+      def line(header, left_counter, right_counter)
+        left = left_line_num header, left_counter
+        right = right_line_num header, right_counter
+        Line.new(@type, @line_text, left, right)
       end
       
       private
-      def left_line_num(left_counter)
-        @type == :right ? "." : left_counter
+      def left_line_num(header, left_counter)
+        @type == :right ? "." : (left_counter + header.line_nums[:left][:from])
       end
       
-      def right_line_num(right_counter)
-        @type == :left ? "." : right_counter
+      def right_line_num(header, right_counter)
+        @type == :left ? "." : (right_counter + header.line_nums[:right][:from])
       end
     end
   

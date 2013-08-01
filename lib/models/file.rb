@@ -1,4 +1,4 @@
-require 'formatters/html'
+require 'formatters/diff_html'
 
 module Diffed
   class DiffedFile

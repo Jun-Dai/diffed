@@ -41,12 +41,18 @@
 <tr class="both"><td>37</td><td>37</td><td><pre>   def find_lines!</pre></td></tr>
 <tr class="left"><td>38</td><td>.</td><td><pre>-    returning(@lines = []) do</pre></td></tr>
 <tr class="left"><td>39</td><td>.</td><td><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td></tr>
-<tr class="left"><td>40</td><td>.</td><td><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number => idx)</pre></td></tr>
+<tr class="left"><td>40</td><td>.</td><td><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number =&gt; idx)</pre></td></tr>
 <tr class="right"><td>.</td><td>38</td><td><pre>+    @lines = []</pre></td></tr>
 <tr class="right"><td>.</td><td>39</td><td><pre>+    @lines.tap do</pre></td></tr>
 <tr class="right"><td>.</td><td>40</td><td><pre>+      input.split(/\r?\n/).each do |line_str|</pre></td></tr>
 <tr class="right"><td>.</td><td>41</td><td><pre>+        line = PrettyDiff::Line.new(diff, line_str)</pre></td></tr>
 <tr class="both"><td>41</td><td>42</td><td><pre>         next if line.ignore?</pre></td></tr>
-<tr class="both"><td>42</td><td>43</td><td><pre>         @lines << line</pre></td></tr>
+<tr class="both"><td>42</td><td>43</td><td><pre>         @lines &lt;&lt; line</pre></td></tr>
 <tr class="both"><td>43</td><td>44</td><td><pre>         line_numbers.act_on_line(line)</pre></td></tr>
+<tr class="section"><td>...</td><td>...</td><td><pre>@@ -45,4 +46,4 @@ private</pre></td></tr>
+<tr class="both"><td>45</td><td>46</td><td><pre>     end</pre></td></tr>
+<tr class="both"><td>46</td><td>47</td><td><pre>   end</pre></td></tr>
+<tr class="both"><td>47</td><td>48</td><td><pre> </pre></td></tr>
+<tr class="left"><td>48</td><td>.</td><td><pre>-end</pre></td></tr>
+<tr class="right"><td>.</td><td>49</td><td><pre>+end</pre></td></tr>
 </table>
