@@ -3,9 +3,17 @@ require 'parsers/unified'
 require 'escape_utils'
 
 module Diffed
+  def self.from_lines(lines)
+    Diff.new(lines)
+  end
+  
+  def self.from_text(text)
+    Diff.new(text.split /\n/)
+  end
+  
   class Diff
-    def initialize(raw_diff)
-      parse(raw_diff.split(/\n/))      
+    def initialize(lines)
+      parse(lines)      
     end
     
     def as_html_table(use_inline_styles = true)
