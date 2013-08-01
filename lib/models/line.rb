@@ -1,5 +1,8 @@
+require 'formatters/html'
+
 module Diffed
   class Line
+    include Html
     attr_reader :type, :text, :left_line_num, :right_line_num, :no_newline
   
     def initialize(type, text, left_line_num, right_line_num)
@@ -17,6 +20,32 @@ module Diffed
     def no_newline= bool
       # mutability like this kind of sucks, but this one's a pain to avoid.
       @no_newline = bool
-    end         
-  end  
+    end 
+    
+    def as_html_row(use_inline_styles)
+      format_code_line(use_inline_styles)
+    end  
+    
+    private
+    def format_code_line(use_inline_styles)
+      row = OutputRow.new(:code_line => self)
+      
+      if use_inline_styles
+        format_styled_row code_line_style, '#000', row
+      else
+        format_classed_row type.to_s, row
+      end
+    end
+      
+    def code_line_style
+      case type
+      when :left
+        '#FDD'
+      when :right
+        '#DFD'
+      when :both
+        nil
+      end
+    end
+  end
 end
