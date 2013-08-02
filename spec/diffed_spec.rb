@@ -32,7 +32,7 @@ describe "Diffed::Diff.as_html_table" do
   it "renders an html table with two highlighted rows, using inline styles" do
     diff = Diffed.from_text(File.read("testdata/diff2.diff"))
     section1 = diff.sections[0]
-    output = section1.as_html_table(true, [9,11])
+    output = section1.as_html_table(true, [5, 9,11])
     # File.open("wtf5.html", "w") {|f| f.write(output)}
     output.strip.should eq File.read("testdata/diff2.styled.html").strip
   end
@@ -40,7 +40,7 @@ describe "Diffed::Diff.as_html_table" do
   it "renders an html table with two highlighted rows, using CSS classes" do
     diff = Diffed.from_text(File.read("testdata/diff2.diff"))
     section1 = diff.sections[0]
-    output = section1.as_html_table(false, [9, 11])
+    output = section1.as_html_table(false, [5, 9, 11])
     # File.open("wtf6.html", "w") {|f| f.write(output)}
     output.strip.should eq File.read("testdata/diff2.classed.html").strip
   end

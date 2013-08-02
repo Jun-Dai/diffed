@@ -31,21 +31,24 @@ module Diffed
       row = OutputRow.new(:code_line => self)
       
       if use_inline_styles
-        format_styled_row code_line_style, '#000', row, :highlight => highlight
+        format_styled_row code_line_color(highlight), '#000', row, :highlight => highlight, :border_color => border_color
       else
         format_classed_row type.to_s, row, :highlight => highlight
       end
     end
       
-    def code_line_style
-      case type
-      when :left
-        '#FDD'
-      when :right
-        '#DFD'
-      when :both
-        nil
+    def code_line_color(highlight)
+      if highlight && type == :both
+        '#FFFBCC'
+      else      
+        colors = {left: '#FDD', right: '#DFD', both: nil}
+        colors[type]
       end
+    end
+    
+    def border_color
+      border_colors = {left: '#F55', right: '#5F5', both: '#999'}
+      border_colors[type]
     end
   end
 end

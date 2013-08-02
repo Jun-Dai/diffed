@@ -13,10 +13,12 @@ module Diffed
     private     
     def format_styled_row(bg_color, text_color, row, opts = {})      
       row_styles = []
+      row_styles << "border-top: 3px solid #{opts[:border_color]}" if opts[:highlight]
+      row_styles << "border-bottom: 3px solid #{opts[:border_color]}" if opts[:highlight]
       row_styles << "background-color: #{bg_color}" unless bg_color.nil?
       row_styles << "font-weight: bold" if opts[:highlight]
       
-      row_style_attr = row_styles.empty? ? "" : %Q{ style="#{row_styles.join('; ')}" }
+      row_style_attr = row_styles.empty? ? "" : %Q{ style="#{row_styles.join('; ')}"}
       text_color = text_color
       
       border = '1px solid #CCC'
@@ -36,7 +38,7 @@ EOS
 
     def make_table_tag(inline_styles)
       if inline_styles
-        table_attributes = %Q{cellpadding="5" style="border-collapse: collapse; border: 1px solid \#CCC; font-family: Consolas, courier, monospace; font-size: 11px; color: #888"}
+        table_attributes = %Q{cellpadding="5" style="border-collapse: collapse; border: 1px solid \#CCC; font-family: Consolas, courier, monospace; font-size: 11px; color: #888; line-height: 80%"}
       else
         table_attributes = %Q{class="coloured-diff"}
       end

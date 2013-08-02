@@ -4,7 +4,7 @@
 <tr class="both"><td>36</td><td>36</td><td><pre>   # Return an array of Line objects.</pre></td></tr>
 <tr class="both"><td>37</td><td>37</td><td><pre>   def find_lines!</pre></td></tr>
 <tr class="left"><td>38</td><td>.</td><td><pre>-    returning(@lines = []) do</pre></td></tr>
-<tr class="left"><td>39</td><td>.</td><td><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td></tr>
+<tr class="left highlight"><td>39</td><td>.</td><td><pre>-      input.split(/\r?\n/).each_with_index do |line_str, idx|</pre></td></tr>
 <tr class="left"><td>40</td><td>.</td><td><pre>-        line = PrettyDiff::Line.new(diff, line_str, :number =&gt; idx)</pre></td></tr>
 <tr class="right"><td>.</td><td>38</td><td><pre>+    @lines = []</pre></td></tr>
 <tr class="right"><td>.</td><td>39</td><td><pre>+    @lines.tap do</pre></td></tr>
