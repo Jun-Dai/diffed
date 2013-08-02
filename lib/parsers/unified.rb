@@ -28,7 +28,6 @@ module Diffed
     end
     
     def sections
-      raise "Not parsed.  Call parse! before attempting to read sections from the parser." if @sections.empty?
       @sections
     end
     
