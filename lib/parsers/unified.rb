@@ -62,11 +62,9 @@ module Diffed
         if line_text.start_with? "-"
           @type = :left
         elsif line_text.start_with? "+"
-          @type = :right      
-        elsif line_text.start_with? " "
-          @type = :both               
+          @type = :right
         else
-          raise "Unparseable line: #{line_text}"
+          @type = :both
         end
       end
       
