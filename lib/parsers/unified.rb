@@ -66,7 +66,7 @@ module Diffed
         elsif line_text.start_with? " "
           @type = :both               
         else
-          raise "Unparseable line: #{line}"
+          raise "Unparseable line: #{line_text}"
         end
       end
       
